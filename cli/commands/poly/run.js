@@ -17,7 +17,7 @@ class PolyRunCommand extends Command {
   help() {
 
     return {
-      description: 'Runs a Mina command on your deployed project',
+      description: 'Runs a Carthage command on your deployed project',
       args: ['project']
     };
 

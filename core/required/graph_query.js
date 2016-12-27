@@ -13,7 +13,7 @@ class GraphQuery {
   * Create a GraphQuery object
   * @param {String} str The query to execute
   * @param {Number} maxDepth The maximum depth of graph to traverse
-  * @param {Mina.Model} [Model=null] The Model to base your query around (used for testing)
+  * @param {Carthage.Model} [Model=null] The Model to base your query around (used for testing)
   */
   constructor(str, maxDepth, Model) {
 
@@ -72,7 +72,7 @@ class GraphQuery {
     const STATES = {
       'NAME': {
         skip: false,
-        terminate: true,
+        tercarthagete: true,
         next: 'PROPERTYLIST',
         func: (str, arr) => {
 
@@ -93,7 +93,7 @@ class GraphQuery {
       },
       'PROPERTYNAME': {
         skip: false,
-        terminate: true,
+        tercarthagete: true,
         next: 'PROPERTYVALUESTART',
         func: (str, arr) => {
 
@@ -114,7 +114,7 @@ class GraphQuery {
       },
       'PROPERTYVALUESTART': {
         skip: false,
-        terminate: false,
+        tercarthagete: false,
         next: 'PROPERTYVALUE',
         func: (str, arr) => {
 
@@ -128,7 +128,7 @@ class GraphQuery {
       },
       'PROPERTYVALUE': {
         skip: false,
-        terminate: false,
+        tercarthagete: false,
         next: 'PROPERTYVALUEEND',
         func: (str, arr) => {
 
@@ -192,7 +192,7 @@ class GraphQuery {
       },
       'PROPERTYVALUEEND': {
         skip: false,
-        terminate: true,
+        tercarthagete: true,
         next: 'PROPERTYNAME',
         func: (str, arr) => {
 
@@ -206,7 +206,7 @@ class GraphQuery {
       },
       'PROPERTYLIST': {
         skip: true,
-        terminate: true,
+        tercarthagete: true,
         func: (str, arr) => {
 
           if (str[0] !== '(') {
@@ -243,7 +243,7 @@ class GraphQuery {
       },
       'LIST': {
         skip: true,
-        terminate: true,
+        tercarthagete: true,
         next: 'NAMEEND',
         func: (str, arr) => {
 
@@ -280,7 +280,7 @@ class GraphQuery {
       },
       'NAMEEND': {
         skip: false,
-        terminate: true,
+        tercarthagete: true,
         next: 'NAME',
         func: (str, arr) => {
 
@@ -299,10 +299,10 @@ class GraphQuery {
     str = str.replace(/^\s*(.*)$/m, '$1');
 
     if (!str) {
-      if (STATES[state].terminate) {
+      if (STATES[state].tercarthagete) {
         return arr;
       } else {
-        throw new Error('Unexpected termination');
+        throw new Error('Unexpected tercarthagetion');
       }
     }
 

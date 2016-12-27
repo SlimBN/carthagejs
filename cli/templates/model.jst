@@ -1,10 +1,10 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
-class {{= data.name }} extends Mina.Model {}
+class {{= data.name }} extends Carthage.Model {}
 
-{{? !data.nodb }}{{= data.name }}.setDatabase(Mina.require('db/main.js'));
-{{?}}{{= data.name }}.setSchema(Mina.my.Schema.models.{{= data.name }});
+{{? !data.nodb }}{{= data.name }}.setDatabase(Carthage.require('db/main.js'));
+{{?}}{{= data.name }}.setSchema(Carthage.my.Schema.models.{{= data.name }});
 
 module.exports = {{= data.name }};

@@ -1,5 +1,5 @@
 {
-  "name": "minajs",
+  "name": "carthage",
   "version": "1.0.0",
   "description": "An API Server and Framework with scaffold functions for node.js",
   "keywords": [
@@ -9,7 +9,7 @@
     "branding",
     "server",
     "modular",
-    "mina"
+    "carthage"
   ],
   "author": "Slim Ben Nasrallah",
   "main": "core/module.js",
@@ -39,10 +39,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SlimBN/minajs"
+    "url": "https://github.com/SlimBN/carthagejs"
   },
   "license": "MIT",
   "bin": {
-    "mina": "cli/bin.js"
+    "carthage": "cli/bin.js"
   }
 }

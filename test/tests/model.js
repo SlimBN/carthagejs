@@ -1,12 +1,12 @@
 'use strict';
 
-module.exports = Mina => {
+module.exports = Carthage => {
 
   let expect = require('chai').expect;
 
-  describe('Mina.Model', function() {
+  describe('Carthage.Model', function() {
 
-    let db = new Mina.Database();
+    let db = new Carthage.Database();
 
     let schemaParent = {
       table: 'parents',
@@ -20,7 +20,7 @@ module.exports = Mina => {
         {name: 'updated_at', type: 'datetime'}
       ]
     };
-    class Parent extends Mina.Model {}
+    class Parent extends Carthage.Model {}
     Parent.hides('secret');
 
     Parent.setDatabase(db);
@@ -45,14 +45,14 @@ module.exports = Mina => {
         {name: 'updated_at', type: 'datetime'}
       ]
     };
-    class House extends Mina.Model {}
+    class House extends Carthage.Model {}
 
     House.setDatabase(db);
     House.setSchema(schemaHouse);
 
     House.joinsTo(Parent);
 
-    class User extends Mina.Model {}
+    class User extends Carthage.Model {}
     User.setSchema({
       table: 'users',
       columns: [
@@ -61,7 +61,7 @@ module.exports = Mina => {
       ]
     });
 
-    class Post extends Mina.Model {}
+    class Post extends Carthage.Model {}
     Post.setSchema({
       table: 'posts',
       columns: [
@@ -73,7 +73,7 @@ module.exports = Mina => {
     });
     Post.joinsTo(User, {multiple: true});
 
-    class Comment extends Mina.Model {}
+    class Comment extends Carthage.Model {}
     Comment.setSchema({
       table: 'comments',
       columns: [
@@ -85,7 +85,7 @@ module.exports = Mina => {
 
     before(function(done) {
 
-      db.connect(Mina.my.Config.db.main);
+      db.connect(Carthage.my.Config.db.main);
 
       db.transaction(
         [schemaParent, schemaHouse].map(schema => {
@@ -111,7 +111,7 @@ module.exports = Mina => {
     it('should instantiate', function() {
 
       let parent = new Parent();
-      expect(parent).to.be.instanceof(Mina.Model);
+      expect(parent).to.be.instanceof(Carthage.Model);
 
     });
 
@@ -260,7 +260,7 @@ module.exports = Mina => {
 
     it('should toObject with interface from ModelArray', function() {
 
-      let parents = new Mina.ModelArray(Parent);
+      let parents = new Carthage.ModelArray(Parent);
 
       parents.push(new Parent({name: 'Parent'}));
 
@@ -276,9 +276,9 @@ module.exports = Mina => {
 
     it('should toObject with multiply-nested ModelArray', function() {
 
-      let comments = Mina.ModelArray.from([new Comment({body: 'Hello, World'})]);
-      let posts = Mina.ModelArray.from([new Post({title: 'Hello', body: 'Everybody'})]);
-      let users =  Mina.ModelArray.from([new User({username: 'Ruby'})]);
+      let comments = Carthage.ModelArray.from([new Comment({body: 'Hello, World'})]);
+      let posts = Carthage.ModelArray.from([new Post({title: 'Hello', body: 'Everybody'})]);
+      let users =  Carthage.ModelArray.from([new User({username: 'Ruby'})]);
 
       posts[0].setJoined('comments', comments);
       users[0].setJoined('posts', posts);
@@ -449,7 +449,7 @@ module.exports = Mina => {
 
       it('should save multiple parents', function(done) {
 
-        let parents = new Mina.ModelArray(Parent);
+        let parents = new Carthage.ModelArray(Parent);
 
         for (let i = 0; i < 10; i++) {
           parents.push(new Parent({name: 'Parent_' + i, age: 20}));
@@ -486,8 +486,8 @@ module.exports = Mina => {
 
     describe('ModelFactory', () => {
 
-      let ParentFactory = new Mina.ModelFactory(Parent);
-      let HouseFactory = new Mina.ModelFactory(House);
+      let ParentFactory = new Carthage.ModelFactory(Parent);
+      let HouseFactory = new Carthage.ModelFactory(House);
 
       it('should not save all parents with verification errors', (done) => {
 
@@ -529,7 +529,7 @@ module.exports = Mina => {
 
       it('should not save data from both Parents and Houses with verification errors', (done) => {
 
-        Mina.ModelFactory.createFromModels(
+        Carthage.ModelFactory.createFromModels(
           [Parent, House],
           {
             Parent: [
@@ -553,7 +553,7 @@ module.exports = Mina => {
 
       it('should save data from both Parents and Houses', (done) => {
 
-        Mina.ModelFactory.createFromModels(
+        Carthage.ModelFactory.createFromModels(
           [Parent, House],
           {
             Parent: [

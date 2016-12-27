@@ -1,19 +1,19 @@
 'use strict';
 
-module.exports = Mina => {
+module.exports = Carthage => {
 
   const async = require('async');
 
   let expect = require('chai').expect;
 
-  describe('Mina.RelationshipGraph', function() {
+  describe('Carthage.RelationshipGraph', function() {
 
-    let Relationships = new Mina.RelationshipGraph();
+    let Relationships = new Carthage.RelationshipGraph();
 
-    class User extends Mina.Model {}
-    class Post extends Mina.Model {}
-    class Comment extends Mina.Model {}
-    class Avatar extends Mina.Model {}
+    class User extends Carthage.Model {}
+    class Post extends Carthage.Model {}
+    class Comment extends Carthage.Model {}
+    class Avatar extends Carthage.Model {}
 
     Relationships.of(Post).joinsTo(User, {multiple: true});
     Relationships.of(Comment).joinsTo(Post, {multiple: true});

@@ -3,7 +3,7 @@ Create a new js file in `cli/commands`. Create a new command from the passed `Co
 ```javascript
 module.exports = function(Command) {
   new Command(null, "s", {
-    definition: "Start the Mina server based on the current project"
+    definition: "Start the Carthage server based on the current project"
   }, (args, flags, callback) => {
     ... do something ...
     callback();
@@ -49,7 +49,7 @@ new Command(null, "model <path_to_model>", {
 Note that you can still path the `_base_` argument as model name and `Command` will parse it for you to the first ext. This is useful when the command only takes one argument and that way you won't need to define `ext` for every command.
 
 #### Order of Commands
-Commands can be ordered based on `options.order`. Order refers to the order of appearance in the `mina help` output and it is an ascending order. Note that negative orders are not allowed and an order of `-1` is reserved for the help command.
+Commands can be ordered based on `options.order`. Order refers to the order of appearance in the `carthage help` output and it is an ascending order. Note that negative orders are not allowed and an order of `-1` is reserved for the help command.
 ```javascript
 new Command(null, "new", { order: 2, ... }, (args, flags, callback) => {
 ```

@@ -1,11 +1,11 @@
 'use strict';
 
-const Mina = require('mina');
-const scheduler = new Mina.Scheduler();
+const Carthage = require('carthage');
+const scheduler = new Carthage.Scheduler();
 
 /* generator: begin imports */
 
-const DummyTask = Mina.require('tasks/dummy_task.js');
+const DummyTask = Carthage.require('tasks/dummy_task.js');
 
 /* generator: end imports */
 

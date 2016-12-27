@@ -7,7 +7,7 @@ class Application extends fxn.Application {
 
   constructor() {
 
-    super('Mina');
+    super('Carthage');
 
   }
 

@@ -1,12 +1,12 @@
 'use strict';
 
-module.exports = Mina => {
+module.exports = Carthage => {
 
   let expect = require('chai').expect;
 
-  describe('Mina.Database', function() {
+  describe('Carthage.Database', function() {
 
-    let db = new Mina.Database();
+    let db = new Carthage.Database();
     let myTable = {
       table: 'test_objects',
       columns: [
@@ -51,7 +51,7 @@ module.exports = Mina => {
 
       it('should connect to my.Config database "main"', function() {
 
-        expect(db.connect(Mina.my.Config.db.main)).to.equal(true);
+        expect(db.connect(Carthage.my.Config.db.main)).to.equal(true);
 
       });
 

@@ -37,7 +37,7 @@ class Model {
   /**
   * Finds a model with a provided id, otherwise returns a notFound error.
   * @param {number} id The id of the model you're looking for
-  * @param {function({Error} err, {Mina.Model} model)} callback The callback to execute upon completion
+  * @param {function({Error} err, {Carthage.Model} model)} callback The callback to execute upon completion
   */
   static find(id, callback) {
 
@@ -70,7 +70,7 @@ class Model {
   * Finds a model with a provided field, value pair. Returns the first found.
   * @param {string} field Name of the field
   * @param {any} value Value of the named field to compare against
-  * @param {function({Error} err, {Mina.Model} model)} callback The callback to execute upon completion
+  * @param {function({Error} err, {Carthage.Model} model)} callback The callback to execute upon completion
   */
   static findBy(field, value, callback) {
 
@@ -97,7 +97,7 @@ class Model {
   /**
   * Creates a new model instance using the provided data.
   * @param {object} data The data to load into the object.
-  * @param {function({Error} err, {Mina.Model} model)} callback The callback to execute upon completion
+  * @param {function({Error} err, {Carthage.Model} model)} callback The callback to execute upon completion
   */
   static create(data, callback) {
 
@@ -110,7 +110,7 @@ class Model {
   * Finds a model with a provided field, value pair. Returns the first found.
   * @param {string} field Name of the field
   * @param {object} data Key-value pairs of Model creation data. Will use appropriate value to query for based on "field" parametere.
-  * @param {function({Error} err, {Mina.Model} model)} callback The callback to execute upon completion
+  * @param {function({Error} err, {Carthage.Model} model)} callback The callback to execute upon completion
   */
   static findOrCreateBy(field, data, callback) {
 
@@ -134,7 +134,7 @@ class Model {
   * Finds and updates a model with a specified id. Return a notFound error if model does not exist.
   * @param {number} id The id of the model you're looking for
   * @param {object} data The data to load into the object.
-  * @param {function({Error} err, {Mina.Model} model)} callback The callback to execute upon completion
+  * @param {function({Error} err, {Carthage.Model} model)} callback The callback to execute upon completion
   */
   static update(id, data, callback) {
 
@@ -154,7 +154,7 @@ class Model {
   /**
   * Finds and destroys a model with a specified id. Return a notFound error if model does not exist.
   * @param {number} id The id of the model you're looking for
-  * @param {function({Error} err, {Mina.Model} model)} callback The callback to execute upon completion
+  * @param {function({Error} err, {Carthage.Model} model)} callback The callback to execute upon completion
   */
   static destroy(id, callback) {
 
@@ -172,8 +172,8 @@ class Model {
 
   /**
   * Creates a new Composer (ORM) instance to begin a new query.
-  * @param {optional Mina.Database} db Deprecated - provide a database to query from. Set the model's db in its constructor file, instead.
-  * @return {Mina.Composer}
+  * @param {optional Carthage.Database} db Deprecated - provide a database to query from. Set the model's db in its constructor file, instead.
+  * @return {Carthage.Composer}
   */
   static query(db) {
 
@@ -301,7 +301,7 @@ class Model {
 
   /**
   * Set the database to be used for this model
-  * @param {Mina.Database} db
+  * @param {Carthage.Database} db
   */
   static setDatabase(db) {
 
@@ -365,7 +365,7 @@ class Model {
 
   /**
   * Sets a joins relationship for the Model. Sets joinedBy relationship for parent.
-  * @param {class Mina.Model} Model The Model class which your current model belongs to
+  * @param {class Carthage.Model} Model The Model class which your current model belongs to
   * @param {Object} [options={}]
   *   "name": The string name of the parent in the relationship (default to camelCase of Model name)
   *   "via": Which field in current model represents this relationship, defaults to `${name}_id`
@@ -855,7 +855,7 @@ class Model {
 
   /**
   * Retrieve associated models joined this model from the database.
-  * @param {function({Error} err, {Mina.Model|Mina.ModelArray} model_1, ... {Mina.Model|Mina.ModelArray} model_n)}
+  * @param {function({Error} err, {Carthage.Model|Carthage.ModelArray} model_1, ... {Carthage.Model|Carthage.ModelArray} model_n)}
   *   Pass in a function with named parameters corresponding the relationships you'd like to retrieve.
   *   The first parameter is always an error callback.
   */
@@ -1250,7 +1250,7 @@ class Model {
 
   /**
   * Destroys model reference in database.
-  * @param {function({Error} err, {Mina.Model} model)} callback
+  * @param {function({Error} err, {Carthage.Model} model)} callback
   *   Method to execute upon completion, returns error if failed
   */
   destroy(callback) {

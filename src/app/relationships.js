@@ -1,13 +1,13 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
 /* Include this file to enable Model relationships */
 
 /* For example...
 
-  const Post = Mina.require('app/models/post.js');
-  const Comment = Mina.require('app/models/comment.js');
+  const Post = Carthage.require('app/models/post.js');
+  const Comment = Carthage.require('app/models/comment.js');
 
   Comment.joinsTo(Post, {multiple: true});
 

@@ -1,8 +1,8 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
-class IndexControllerTest extends Mina.mocha.Test {
+class IndexControllerTest extends Carthage.mocha.Test {
 
   test(expect) {
 

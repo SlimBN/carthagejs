@@ -1,8 +1,8 @@
 'use strict';
 
-const Mina = require('mina');
-const db = new Mina.Database();
+const Carthage = require('carthage');
+const db = new Carthage.Database();
 
-db.connect(Mina.my.Config.db.main);
+db.connect(Carthage.my.Config.db.main);
 
 module.exports = db;

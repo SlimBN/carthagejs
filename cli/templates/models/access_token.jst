@@ -1,11 +1,11 @@
 'use strict';
 
-const Mina = require('mina');
-const User = Mina.require('app/models/user.js');
+const Carthage = require('carthage');
+const User = Carthage.require('app/models/user.js');
 
 const crypto = require('crypto');
 
-class AccessToken extends Mina.Model {
+class AccessToken extends Carthage.Model {
 
   static generateAccessTokenString() {
 
@@ -102,8 +102,8 @@ class AccessToken extends Mina.Model {
 
 }
 
-AccessToken.setDatabase(Mina.require('db/main.js'));
-AccessToken.setSchema(Mina.my.Schema.models.AccessToken);
+AccessToken.setDatabase(Carthage.require('db/main.js'));
+AccessToken.setSchema(Carthage.my.Schema.models.AccessToken);
 
 AccessToken.joinsTo(User, {multiple: true});
 

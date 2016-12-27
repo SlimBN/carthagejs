@@ -21,7 +21,7 @@ class PolyDeployCommand extends Command {
   help() {
 
     return {
-      description: 'Deploys current directory as a Mina project',
+      description: 'Deploys current directory as a Carthage project',
       args: ['project']
     };
 
@@ -29,8 +29,8 @@ class PolyDeployCommand extends Command {
 
   run(params, callback) {
 
-    if (!fs.existsSync(path.join(process.cwd(), '.mina'))) {
-      return callback(new Error('Must run `mina poly:deploy` or `mina poly:compile` from a valid Mina project.'));
+    if (!fs.existsSync(path.join(process.cwd(), '.carthage'))) {
+      return callback(new Error('Must run `carthage poly:deploy` or `carthage poly:compile` from a valid Carthage project.'));
     }
 
     let name = params.args[0];

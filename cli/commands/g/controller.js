@@ -39,7 +39,7 @@ function generateRoute(controllerName, controllerPath, controllerRoute) {
     'const ',
       controllerName,
     ' = ',
-    'Mina.require(\'app/controllers/',
+    'Carthage.require(\'app/controllers/',
       controllerPath.join('/'),
     '\');'
   ].join('')

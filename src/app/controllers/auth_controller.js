@@ -1,8 +1,8 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
-class AuthController extends Mina.Controller {
+class AuthController extends Carthage.Controller {
 
   authorize(callback) {
 

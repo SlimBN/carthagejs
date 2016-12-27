@@ -13,8 +13,8 @@ class Composer {
 
   /**
   * Created by Model#query, used for composing SQL queries based on Models
-  * @param {Mina.Model} Model The model class the composer is querying from
-  * @param {Mina.Composer} [parent=null] The composer's parent (another composer instance)
+  * @param {Carthage.Model} Model The model class the composer is querying from
+  * @param {Carthage.Composer} [parent=null] The composer's parent (another composer instance)
   */
   constructor(Model, parent) {
 
@@ -30,7 +30,7 @@ class Composer {
   * Given rows with repeated data (due to joining in multiple children), return only parent models (but include references to their children)
   * @param {Array} rows Rows from sql result
   * @param {Boolean} grouped Are these models grouped, if so, different procedure
-  * @return {Mina.ModelArray}
+  * @return {Carthage.ModelArray}
   * @private
   */
   __parseModelsFromRows__(rows, grouped) {
@@ -468,7 +468,7 @@ class Composer {
   /**
   * When using Composer#where, format all provided comparisons
   * @param {Object} comparisons Comparisons object. {age__lte: 27}, for example.
-  * @param {Mina.Model} Model the model to use as the basis for comparison. Default to current model.
+  * @param {Carthage.Model} Model the model to use as the basis for comparison. Default to current model.
   * @return {Array}
   * @private
   */
@@ -582,7 +582,7 @@ class Composer {
   /**
   * Add comparisons to SQL WHERE clause. Does not allow filtering if Model.hides() has been called.
   * @param {Object} comparisons Comparisons object. {age__lte: 27}, for example.
-  * @return {Mina.Composer} new Composer instance
+  * @return {Carthage.Composer} new Composer instance
   */
   safeWhere(comparisonsArray) {
 
@@ -628,7 +628,7 @@ class Composer {
   /**
   * Add comparisons to SQL WHERE clause.
   * @param {Object} comparisons Comparisons object. {age__lte: 27}, for example.
-  * @return {Mina.Composer} new Composer instance
+  * @return {Carthage.Composer} new Composer instance
   */
   where(comparisonsArray) {
 
@@ -684,7 +684,7 @@ class Composer {
   * Order by field belonging to the current Composer instance's model.
   * @param {string} field Field to order by
   * @param {string} direction Must be 'ASC' or 'DESC'
-  * @return {Mina.Composer} new Composer instance
+  * @return {Carthage.Composer} new Composer instance
   */
   orderBy(field, direction) {
 
@@ -722,7 +722,7 @@ class Composer {
   * Limit to an offset and count
   * @param {number} offset The offset at which to set the limit. If this is the only argument provided, it will be the count instead.
   * @param {number} count The number of results to be returned. Can be omitted, and if omitted, first argument is used for count.
-  * @return {Mina.Composer} new Composer instance
+  * @return {Carthage.Composer} new Composer instance
   */
   limit(offset, count) {
 
@@ -886,7 +886,7 @@ class Composer {
 
   /**
   * Execute the query you've been composing.
-  * @param {function({Error}, {Mina.ModelArray})} callback The method to execute when the query is complete
+  * @param {function({Error}, {Carthage.ModelArray})} callback The method to execute when the query is complete
   */
   end(callback) {
 
@@ -943,7 +943,7 @@ class Composer {
   /**
   * Execute query as an update query, changed all fields specified.
   * @param {Object} fields The object containing columns (keys) and associated values you'd like to update
-  * @param {function({Error}, {Mina.ModelArray})} callback The callback for the update query
+  * @param {function({Error}, {Carthage.ModelArray})} callback The callback for the update query
   */
   update(fields, callback) {
 

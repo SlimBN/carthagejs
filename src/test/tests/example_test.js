@@ -1,8 +1,8 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
-class ExampleTest extends Mina.mocha.Test {
+class ExampleTest extends Carthage.mocha.Test {
 
   test(expect) {
 

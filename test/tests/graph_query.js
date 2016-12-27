@@ -1,13 +1,13 @@
 'use strict';
 
-module.exports = Mina => {
+module.exports = Carthage => {
 
   const expect = require('chai').expect;
   const async = require('async');
 
   describe('Graph Query', () => {
 
-    let db = new Mina.Database();
+    let db = new Carthage.Database();
 
     let schemaUser = {
       table: 'users',
@@ -55,25 +55,25 @@ module.exports = Mina => {
       ]
     };
 
-    class User extends Mina.Model {}
+    class User extends Carthage.Model {}
 
     User.setDatabase(db);
     User.setSchema(schemaUser);
 
-    class Thread extends Mina.Model {}
+    class Thread extends Carthage.Model {}
 
     Thread.setDatabase(db);
     Thread.setSchema(schemaThread);
     Thread.joinsTo(User, {multiple: true});
 
-    class Post extends Mina.Model {}
+    class Post extends Carthage.Model {}
 
     Post.setDatabase(db);
     Post.setSchema(schemaPost);
     Post.joinsTo(User, {multiple: true});
     Post.joinsTo(Thread, {multiple: true});
 
-    class Vote extends Mina.Model {};
+    class Vote extends Carthage.Model {};
 
     Vote.setDatabase(db);
     Vote.setSchema(schemaVote);
@@ -82,7 +82,7 @@ module.exports = Mina => {
 
     before(function(done) {
 
-      db.connect(Mina.my.Config.db.main);
+      db.connect(Carthage.my.Config.db.main);
 
       db.transaction(
         [schemaUser, schemaThread, schemaPost, schemaVote].map(schema => {
@@ -104,7 +104,7 @@ module.exports = Mina => {
             skill: ['JavaScript', 'Python', 'Ruby'][i % 3]
           }));
 
-          users = Mina.ModelArray.from(users);
+          users = Carthage.ModelArray.from(users);
 
           users.forEach((user, i) => {
 
@@ -116,7 +116,7 @@ module.exports = Mina => {
               'Upvote this pls'
             ].map((title) => new Thread({title: title, user_id: uid}));
 
-            user.setJoined('threads', Mina.ModelArray.from(threads));
+            user.setJoined('threads', Carthage.ModelArray.from(threads));
 
             let posts = [];
             let votes = [];
@@ -129,8 +129,8 @@ module.exports = Mina => {
             posts = posts.map(post => new Post(post));
             votes = votes.map(vote => new Vote(vote));
 
-            user.setJoined('posts', Mina.ModelArray.from(posts));
-            user.setJoined('votes', Mina.ModelArray.from(votes));
+            user.setJoined('posts', Carthage.ModelArray.from(posts));
+            user.setJoined('votes', Carthage.ModelArray.from(votes));
 
 
           });
@@ -167,7 +167,7 @@ module.exports = Mina => {
 
     });
 
-    const GraphQuery = Mina.GraphQuery;
+    const GraphQuery = Carthage.GraphQuery;
 
     it ('should parse properly', () => {
 

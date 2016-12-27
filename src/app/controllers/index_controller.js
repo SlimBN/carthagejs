@@ -1,12 +1,12 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
-class IndexController extends Mina.Controller {
+class IndexController extends Carthage.Controller {
 
   get() {
 
-    this.respond({message: 'Welcome to your Mina Project'});
+    this.respond({message: 'Welcome to your Carthage Project'});
 
   }
 

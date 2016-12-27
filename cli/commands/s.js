@@ -13,7 +13,7 @@ class ServerCommand extends Command {
   help() {
 
     return {
-      description: 'Starts your Mina Server'
+      description: 'Starts your Carthage Server'
     };
 
   }

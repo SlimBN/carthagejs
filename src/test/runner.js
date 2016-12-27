@@ -2,10 +2,10 @@
 
 process.env.NODE_ENV = 'test';
 
-const Mina = require('mina');
-const TestRunner = Mina.mocha.TestRunner;
+const Carthage = require('carthage');
+const TestRunner = Carthage.mocha.TestRunner;
 
-const router = Mina.require('app/router.js');
+const router = Carthage.require('app/router.js');
 
 const tests = new TestRunner('./test/tests', router);
 
@@ -14,7 +14,7 @@ return describe('My Application', () => {
   /* Uncomment for database support */
   // before((done) => {
   //
-  //   Mina.my.bootstrapper.compose((err) => {
+  //   Carthage.my.bootstrapper.compose((err) => {
   //
   //     if (err) {
   //       console.error(err);

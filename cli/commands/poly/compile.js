@@ -18,7 +18,7 @@ class PolyCompileCommand extends Command {
   help() {
 
     return {
-      description: 'Compiles your Mina API to the cloud, runs database migrations',
+      description: 'Compiles your Carthage API to the cloud, runs database migrations',
       args: ['projectName'],
       vflags: {
         prepare: 'Runs db:prepare after compilation (resets DB)',

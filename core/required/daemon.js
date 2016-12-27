@@ -12,7 +12,7 @@ class Daemon extends fxn.Daemon {
 
   constructor() {
 
-    super('Mina');
+    super('Carthage');
 
   }
 

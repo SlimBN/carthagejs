@@ -1,14 +1,14 @@
 'use strict';
 
-module.exports = Mina => {
+module.exports = Carthage => {
 
   const async = require('async');
 
   let expect = require('chai').expect;
 
-  describe('Mina.Composer', function() {
+  describe('Carthage.Composer', function() {
 
-    let db = new Mina.Database();
+    let db = new Carthage.Database();
 
     let schemaParent = {
       table: 'parents',
@@ -71,32 +71,32 @@ module.exports = Mina => {
       ]
     };
 
-    class Parent extends Mina.Model {}
+    class Parent extends Carthage.Model {}
 
     Parent.setDatabase(db);
     Parent.setSchema(schemaParent);
     Parent.hides('hidden');
 
-    class Friendship extends Mina.Model {}
+    class Friendship extends Carthage.Model {}
 
     Friendship.setDatabase(db);
     Friendship.setSchema(schemaFriendship);
     Friendship.joinsTo(Parent, {name: 'fromParent', as: 'outgoingFriendships', multiple: true});
     Friendship.joinsTo(Parent, {name: 'toParent', as: 'incomingFriendships', multiple: true});
 
-    class Child extends Mina.Model {}
+    class Child extends Carthage.Model {}
 
     Child.setDatabase(db);
     Child.setSchema(schemaChild);
     Child.joinsTo(Parent, {multiple: true});
 
-    class Partner extends Mina.Model {}
+    class Partner extends Carthage.Model {}
 
     Partner.setDatabase(db);
     Partner.setSchema(schemaPartner);
     Partner.joinsTo(Parent);
 
-    class Pet extends Mina.Model {}
+    class Pet extends Carthage.Model {}
 
     Pet.setDatabase(db);
     Pet.setSchema(schemaPet);
@@ -104,7 +104,7 @@ module.exports = Mina => {
 
     before(function(done) {
 
-      db.connect(Mina.my.Config.db.main);
+      db.connect(Carthage.my.Config.db.main);
 
       db.transaction(
         [schemaParent, schemaFriendship, schemaChild, schemaPartner, schemaPet].map(schema => {
@@ -135,7 +135,7 @@ module.exports = Mina => {
             hidden: 'abcdef'.split('')[i % 6]
           }));
 
-          parents = Mina.ModelArray.from(parents);
+          parents = Carthage.ModelArray.from(parents);
 
           parents.forEach((p, i) => {
 
@@ -145,18 +145,18 @@ module.exports = Mina => {
               return new Child({parent_id: id, name: `Child${name}`, age: (Math.random() * 30) | 0});
             });
 
-            p.setJoined('children', Mina.ModelArray.from(children));
+            p.setJoined('children', Carthage.ModelArray.from(children));
 
             let pets = ['Oliver', 'Ruby', 'Pascal'].map((name, i) => {
               return new Pet({parent_id: id, name: name, animal: ['Cat', 'Dog', 'Cat'][i], details: { language: name === 'Pascal' }});
             });
 
-            p.setJoined('pets', Mina.ModelArray.from(pets));
+            p.setJoined('pets', Carthage.ModelArray.from(pets));
 
             let partner = new Partner({parent_id: id, name: `Partner${i}`, job: ['Plumber', 'Engineer', 'Nurse'][(Math.random() * 3) | 0]});
             p.setJoined('partner', partner);
 
-            let friendships = new Mina.ModelArray(Friendship);
+            let friendships = new Carthage.ModelArray(Friendship);
             while (i--) {
               let friendship = new Friendship({from_parent_id: id, to_parent_id: i + 1});
               friendships.push(friendship);
@@ -205,7 +205,7 @@ module.exports = Mina => {
         .end((err, parents) => {
 
           expect(err).to.equal(null);
-          expect(parents).to.be.an.instanceOf(Mina.ModelArray);
+          expect(parents).to.be.an.instanceOf(Carthage.ModelArray);
           expect(parents.length).to.equal(10);
           done();
 
@@ -219,7 +219,7 @@ module.exports = Mina => {
         .end((err, partners) => {
 
           expect(err).to.equal(null);
-          expect(partners).to.be.an.instanceOf(Mina.ModelArray);
+          expect(partners).to.be.an.instanceOf(Carthage.ModelArray);
           expect(partners.length).to.equal(10);
           done();
 
@@ -233,7 +233,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(100);
           done();
 
@@ -299,7 +299,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(100);
           expect(children[0].get('id')).to.equal(100);
           done();
@@ -315,7 +315,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(10);
           expect(children._meta.total).to.equal(100);
           expect(children._meta.offset).to.equal(5);
@@ -332,7 +332,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(95);
           expect(children._meta.total).to.equal(100);
           expect(children._meta.offset).to.equal(5);
@@ -349,7 +349,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(10);
           expect(children._meta.total).to.equal(100);
           expect(children._meta.offset).to.equal(0);
@@ -366,7 +366,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(10);
           expect(children._meta.total).to.equal(100);
           expect(children._meta.offset).to.equal(5);
@@ -384,7 +384,7 @@ module.exports = Mina => {
         .end((err, children) => {
 
           expect(err).to.equal(null);
-          expect(children).to.be.an.instanceOf(Mina.ModelArray);
+          expect(children).to.be.an.instanceOf(Carthage.ModelArray);
           expect(children.length).to.equal(10);
           expect(children[0].get('id')).to.equal(11);
           done();

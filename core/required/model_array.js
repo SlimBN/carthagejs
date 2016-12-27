@@ -12,7 +12,7 @@ class ModelArray extends ItemArray {
 
   /**
   * Create the ModelArray with a provided Model to use as a reference.
-  * @param {Array|class Mina.Model} modelConstructor Must pass the constructor for the type of ModelArray you wish to create.
+  * @param {Array|class Carthage.Model} modelConstructor Must pass the constructor for the type of ModelArray you wish to create.
   */
   constructor(modelConstructor) {
 
@@ -50,7 +50,7 @@ class ModelArray extends ItemArray {
 
   /**
   * Checks if ModelArray has a model in it
-  * @param {Mina.Model} model
+  * @param {Carthage.Model} model
   */
   has(model) {
     return this.filter(m => m.get('id') === model.get('id')).length > 0;

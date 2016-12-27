@@ -7,7 +7,7 @@
       "port": "5432",
       "user": "postgres",
       "password": "",
-      "database": "mina_test"
+      "database": "carthage_test"
     }
   },
 

@@ -88,7 +88,7 @@ class Controller extends fxn.Controller {
 
   /**
   * Using API formatting, generate an error or respond with model / object data.
-  * @param {Error|Object|Array|Mina.Model|Mina.ModelArray} data Object to be formatted for API response
+  * @param {Error|Object|Array|Carthage.Model|Carthage.ModelArray} data Object to be formatted for API response
   * @param {optional Array} The interface to use for the data being returned, if not an error.
   * @return {boolean}
   */

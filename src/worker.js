@@ -1,7 +1,7 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
-const SchedulerMain = Mina.require('schedulers/main.js');
+const SchedulerMain = Carthage.require('schedulers/main.js');
 
 SchedulerMain.start();

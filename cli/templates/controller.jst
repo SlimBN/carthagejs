@@ -1,9 +1,9 @@
 'use strict';
 
-const Mina = require('mina');{{? data.for }}
-const {{= data.for.name }} = Mina.require('{{= data.for.path }}');{{?}}
+const Carthage = require('carthage');{{? data.for }}
+const {{= data.for.name }} = Carthage.require('{{= data.for.path }}');{{?}}
 
-class {{= data.name }} extends Mina.Controller {
+class {{= data.name }} extends Carthage.Controller {
 
   {{? data.for }}index() {
 

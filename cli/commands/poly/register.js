@@ -35,7 +35,7 @@ class PolyRegisterCommand extends Command {
     console.log(colors.bold.green('Welcome to Polybit Cloud!'));
     console.log('https://www.polybit.com/');
     console.log('');
-    console.log('Polybit Cloud is an API Deployment Platform built for Mina.');
+    console.log('Polybit Cloud is an API Deployment Platform built for Carthage.');
     console.log('Please ensure you use a valid e-mail address.');
     console.log(colors.bold.red('Accounts with invalid e-mails may be removed without warning.'));
     console.log('');

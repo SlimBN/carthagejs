@@ -34,8 +34,8 @@ class PolyNewCommand extends Command {
     // for PolyCompileCommand
     params.vflags.prepare = true;
 
-    if (!fs.existsSync(path.join(process.cwd(), '.mina'))) {
-      return callback(new Error('Must run `mina poly:new` from a valid Mina project. Please try `mina new` first.'));
+    if (!fs.existsSync(path.join(process.cwd(), '.carthage'))) {
+      return callback(new Error('Must run `carthage poly:new` from a valid Carthage project. Please try `carthage new` first.'));
     }
 
     async.series([

@@ -14,7 +14,7 @@ class VersionCommand extends Command {
   help() {
 
     return {
-      description: 'Shows your currently globally installed Mina version'
+      description: 'Shows your currently globally installed Carthage version'
     };
 
   }
@@ -22,7 +22,7 @@ class VersionCommand extends Command {
   run(params, callback) {
 
     let version = require('../../package.json').version;
-    console.log(colors.green.bold('Mina Version: ') + version);
+    console.log(colors.green.bold('Carthage Version: ') + version);
 
     callback(null);
 

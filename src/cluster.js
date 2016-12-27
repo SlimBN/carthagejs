@@ -1,16 +1,16 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 const cluster = require('cluster');
 
 if (cluster.isMaster) {
 
-  const daemon = new Mina.Daemon();
-  daemon.start(Mina.my.Config.secrets.port);
+  const daemon = new Carthage.Daemon();
+  daemon.start(Carthage.my.Config.secrets.port);
 
 } else {
 
-  const app = new Mina.Application();
-  app.listen(Mina.my.Config.secrets.port);
+  const app = new Carthage.Application();
+  app.listen(Carthage.my.Config.secrets.port);
 
 }

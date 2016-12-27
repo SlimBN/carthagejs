@@ -1,27 +1,27 @@
-# Learn Mina
+# Learn Carthage
 
-Mina follows MVC patterns you're probably familiar with from the simplicity
+Carthage follows MVC patterns you're probably familiar with from the simplicity
 of Django and Rails. If you need more in-depth help,
-[full API documentation is available here](http://www.minajs.com/static/docs/index.html). Otherwise,
+[full API documentation is available here](http://www.carthagejs.com/static/docs/index.html). Otherwise,
 let's get started!
 
 # Starting Your Project
 
 To begin your project, first install the latest version of Node (4.x) from
 [nodejs.org](http://nodejs.org). Once you've completed that, open your
-terminal and run:
+tercarthagel and run:
 
 ```
-npm install mina -g
+npm install carthage -g
 ```
-(If you get an error, run `sudo npm install mina -g` or fix permissions permanently by [following these directions](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
-It will take a few seconds to finish. At this point, you have the Mina
+(If you get an error, run `sudo npm install carthage -g` or fix permissions permanently by [following these directions](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
+It will take a few seconds to finish. At this point, you have the Carthage
 command line tools available and you can really get started!
 
 Next, run:
 
 ```
-mina new
+carthage new
 ```
 
 A few prompts will walk you through the project creation process. Once you're
@@ -29,10 +29,10 @@ done, visit your new project folder.
 
 # Starting Your Server
 
-Begin your Mina server with:
+Begin your Carthage server with:
 
 ```
-mina s
+carthage s
 ```
 
 And voila! You'll notice the port that it's running on is `3000`. If you want to
@@ -54,7 +54,7 @@ change that, go to `config/secrets.json`:
 
 And modify the `"port": 3000,` line to whatever you'd like. Wait - is this magic?
 Not really. **Every file in ./config/ will get loaded into a special Config object**.
-Namely, into `Mina.my.Config.{filename}` assuming `const Mina = require('mina')`.
+Namely, into `Carthage.my.Config.{filename}` assuming `const Carthage = require('carthage')`.
 
 Remember this! This is very important for setting environment variables. The
 values that are loaded are based on your environment, set by your `NODE_ENV` environment
@@ -67,18 +67,18 @@ module.exports = (() => {
 
   'use strict';
 
-  const Mina = require('mina');
+  const Carthage = require('carthage');
   const cluster = require('cluster');
 
   if (cluster.isMaster) {
 
-    const daemon = Mina.require('app/daemon.js');
-    daemon.start(Mina.my.Config.secrets.PORT);
+    const daemon = Carthage.require('app/daemon.js');
+    daemon.start(Carthage.my.Config.secrets.PORT);
 
   } else {
 
-    const app = new Mina.Application();
-    app.listen(Mina.my.Config.secrets.PORT);
+    const app = new Carthage.Application();
+    app.listen(Carthage.my.Config.secrets.PORT);
 
 
   }
@@ -99,15 +99,15 @@ module.exports = (function() {
 
   'use strict';
 
-  const Mina = require('mina');
-  const router = new Mina.Router();
+  const Carthage = require('carthage');
+  const router = new Carthage.Router();
 
   /* Middleware */
   /* executed *before* Controller-specific middleware */
 
-  const CORSMiddleware = Mina.require('middleware/cors_middleware.js');
-  // const ForceWWWMiddleware = Mina.require('middleware/force_www_middleware.js');
-  // const ForceHTTPSMiddleware = Mina.require('middleware/force_https_middleware.js');
+  const CORSMiddleware = Carthage.require('middleware/cors_middleware.js');
+  // const ForceWWWMiddleware = Carthage.require('middleware/force_www_middleware.js');
+  // const ForceHTTPSMiddleware = Carthage.require('middleware/force_https_middleware.js');
 
   router.middleware.use(CORSMiddleware);
   // router.middleware.use(ForceWWWMiddleware);
@@ -116,15 +116,15 @@ module.exports = (function() {
   /* Renderware */
   /* executed *after* Controller-specific renderware */
 
-  const GzipRenderware = Mina.require('renderware/gzip_renderware.js')
+  const GzipRenderware = Carthage.require('renderware/gzip_renderware.js')
 
   router.renderware.use(GzipRenderware);
 
   /* Routes */
 
-  const IndexController = Mina.require('app/controllers/index_controller.js');
-  const StaticController = Mina.require('app/controllers/static_controller.js');
-  const Error404Controller = Mina.require('app/controllers/error/404_controller.js');
+  const IndexController = Carthage.require('app/controllers/index_controller.js');
+  const StaticController = Carthage.require('app/controllers/static_controller.js');
+  const Error404Controller = Carthage.require('app/controllers/error/404_controller.js');
 
   /* generator: begin imports */
 
@@ -147,7 +147,7 @@ module.exports = (function() {
 ```
 
 Things to make note of here: The design pattern for `module.exports = (function() { /*...*/ })()`
-where you export an IIFE is the standard in Mina. The reason we do this is to encourage
+where you export an IIFE is the standard in Carthage. The reason we do this is to encourage
 consistency in understanding what's getting exported. A developer looking to quickly debug
 can jump to the bottom of a file and look for the return statement to see what was
 actually exported.
@@ -192,17 +192,17 @@ module.exports = (function() {
 
   'use strict';
 
-  const Mina = require('mina');
+  const Carthage = require('carthage');
 
-  class IndexController extends Mina.Controller {
+  class IndexController extends Carthage.Controller {
 
     get() {
 
       this.render(
-        Mina.Template.generate('index.html').render(
+        Carthage.Template.generate('index.html').render(
           this.params,
           {
-            name: 'My Mina Application'
+            name: 'My Carthage Application'
           }
         )
       );
@@ -248,7 +248,7 @@ destroy() // DELETE
 To render a string from within a controller, use `this.render()`. It can also
 render JSON automatically if you provide a serializable object. **For API-formatted
 responses use:** `this.respond()`. Other ways to respond to requests are
-available [in the API documentation](http://www.minajs.com/static/docs/index.html).
+available [in the API documentation](http://www.carthagejs.com/static/docs/index.html).
 
 ## Using 'this' in Controllers
 
@@ -263,7 +263,7 @@ are easy to send out. (No `self = this;` anti-patterns.)
 Create a new controller with the CLI using
 
 ```
-mina g:controller ControllerName
+carthage g:controller ControllerName
 ```
 
 It will then create `controller_name_controller.js` in the base `./controllers/` directory.
@@ -271,7 +271,7 @@ It will then create `controller_name_controller.js` in the base `./controllers/`
 If you'd like to put it in another directory, use:
 
 ```
-mina g:controller path/to/ControllerName
+carthage g:controller path/to/ControllerName
 ```
 
 **Generating controllers this way will also automatically create best-guess routes
@@ -280,7 +280,7 @@ in router.js.**
 You can create a controller for a specific model (auto include CRUD features) with:
 
 ```
-mina g:controller --for ModelName
+carthage g:controller --for ModelName
 ```
 
 # Models
@@ -289,7 +289,7 @@ Creating models is easy. Your project won't start out with any (they're not
 necessary for all server types), but you can generate them with:
 
 ```
-mina g:model ModelName
+carthage g:model ModelName
 ```
 
 This will create both a *Model* and a *Migration*. The Model will look like;
@@ -299,12 +299,12 @@ module.exports = (function() {
 
   'use strict';
 
-  const Mina = require('mina');
+  const Carthage = require('carthage');
 
-  class ModelName extends Mina.Model {}
+  class ModelName extends Carthage.Model {}
 
-  ModelName.setDatabase(Mina.require('db/main.js'));
-  ModelName.setSchema(Mina.my.Schema.models.ModelName);
+  ModelName.setDatabase(Carthage.require('db/main.js'));
+  ModelName.setSchema(Carthage.my.Schema.models.ModelName);
 
   return ModelName;
 
@@ -313,19 +313,19 @@ module.exports = (function() {
 
 Our database is set from `./db/main.js` which grabs connection data from
 `./config/db.json`. (Explore both files to see what's happening. Same as
-`./config/secrets.json` above.) Note that Mina currently only supports PostgreSQL.
+`./config/secrets.json` above.) Note that Carthage currently only supports PostgreSQL.
 
-Our schema is set from `Mina.my.Schema` which automatically loaded `./db/schema.json`
+Our schema is set from `Carthage.my.Schema` which automatically loaded `./db/schema.json`
 upon starting the server. (**For this reason, Schema changes require app shutdowns and reloads.**)
 
 ## Special Models
 
-Mina comes with two "special", pre-built models. `User` and `AccessToken`.
+Carthage comes with two "special", pre-built models. `User` and `AccessToken`.
 Create these with:
 
 ```
-mina g:model --user
-mina g:model --access_token
+carthage g:model --user
+carthage g:model --access_token
 ```
 
 These models just have some additional libraries / functionality included that
@@ -339,31 +339,31 @@ your Model data into a schema and create the necessary database connections,
 make sure PostgreSQL is running and make sure your database is created:
 
 ```
-mina db:create
+carthage db:create
 ```
 
 Once your database is created, prepare it for migrations (drops schema, clears table)
 
 ```
-mina db:prepare
+carthage db:prepare
 ```
 
 And finally, run all pending migrations with:
 
 ```
-mina db:migrate
+carthage db:migrate
 ```
 
 If you need to undo a migration simply run (one migration at a time):
 
 ```
-mina db:rollback
+carthage db:rollback
 ```
 
 If you'd like to do a stepwise migrations or rollbacks, use the flag:
 
 ```
-mina db:migrate --step:1
+carthage db:migrate --step:1
 ```
 
 ## Using Your Model
@@ -371,10 +371,10 @@ mina db:migrate --step:1
 To use your Model in a controller, import it with:
 
 ```
-const Model = Mina.require('app/models/my_model.js');
+const Model = Carthage.require('app/models/my_model.js');
 ```
 
-`Mina.require` is just `require` pointing to your main app directory.
+`Carthage.require` is just `require` pointing to your main app directory.
 
 You can do fun things with your Model like;
 
@@ -406,11 +406,11 @@ query
 
 ## Postgres JSONB Column Type support
 
-Mina has basic support for the Postgres [JSONB data type](http://www.postgresql.org/docs/9.4/static/datatype-json.html). Any model that has a json column that contains a valid JSON object will have the object automatically marshalled in and out of the database. Let's walk through how to setup and use a model with a json column.
+Carthage has basic support for the Postgres [JSONB data type](http://www.postgresql.org/docs/9.4/static/datatype-json.html). Any model that has a json column that contains a valid JSON object will have the object automatically marshalled in and out of the database. Let's walk through how to setup and use a model with a json column.
 
 First, lets generate a new model
 
-```mina g:model Recipe name:string, flags:json```
+```carthage g:model Recipe name:string, flags:json```
 
 Open the migration that was generated and you will see the following in the `up()` method.
 
@@ -430,7 +430,7 @@ up() {
 }
 ```
 
-Mina provides two comparator's for querying the json data for matches or existence. Lets assume our Recipe table contains a collection of recipes, and the flags json column contains flags related to dietary restrictions like vegetarian, vegan or paleo. Lets query for recipes that are Paleo only
+Carthage provides two comparator's for querying the json data for matches or existence. Lets assume our Recipe table contains a collection of recipes, and the flags json column contains flags related to dietary restrictions like vegetarian, vegan or paleo. Lets query for recipes that are Paleo only
 
 ```javascript
 Recipe.query()
@@ -469,9 +469,9 @@ Recipe.query()
 There's still a bunch more to cover! Information on in-depth Migrations,
 Middleware, Schedulers, Tasks and Workers is coming soon.
 
-Please [watch the repository, keithwhor/mina](http://github.com/keithwhor/mina)
+Please [watch the repository, keithwhor/carthage](http://github.com/keithwhor/carthage)
 for updates.
 
-Keep up with screencasts and more details on [minajs.com](http://minajs.com).
+Keep up with screencasts and more details on [carthagejs.com](http://carthagejs.com).
 
 Follow me on Twitter, [@keithwhor](http://twitter.com/keithwhor)

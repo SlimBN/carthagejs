@@ -21,22 +21,22 @@ class NewCommand extends Command {
   help() {
 
     return {
-      description: 'Initialize the current directory as a new Mina project'
+      description: 'Initialize the current directory as a new Carthage project'
     };
 
   }
 
   run(params, callback) {
 
-    if (fs.existsSync('./.mina')) {
-      return callback(new Error('Mina project already exists in this directory'));
+    if (fs.existsSync('./.carthage')) {
+      return callback(new Error('Carthage project already exists in this directory'));
     }
 
     const rootPath = path.resolve(__dirname);
     const version = require('../../package.json').version;
 
     console.log('');
-    console.log(`Welcome to ${colors.bold.green('Mina! v' + version)}`);
+    console.log(`Welcome to ${colors.bold.green('Carthage! v' + version)}`);
     console.log('');
 
     let data = {
@@ -50,7 +50,7 @@ class NewCommand extends Command {
     !data.name && questions.push({
       name: 'project-name',
       type: 'input',
-      default: 'my-mina-project',
+      default: 'my-carthage-project',
       message: 'Name',
     });
 
@@ -61,8 +61,8 @@ class NewCommand extends Command {
       message: 'Author',
     });
 
-    // Count new mina projects being made. :)
-    let req = http.request({host: 'api.polybit.com', port: 80, path: `/v1/mina_initializations?version=${version}`, method: 'POST'});
+    // Count new carthage projects being made. :)
+    let req = http.request({host: 'api.polybit.com', port: 80, path: `/v1/carthage_initializations?version=${version}`, method: 'POST'});
     req.on('error', (() => {}));
     req.end();
 
@@ -88,7 +88,7 @@ class NewCommand extends Command {
 
       fs.mkdirSync('./' + dirname);
 
-      console.log('Copying Mina directory structure and files...');
+      console.log('Copying Carthage directory structure and files...');
       console.log('');
 
       fs.copy(rootPath + '/../../src', './' + dirname, function(err) {
@@ -133,7 +133,7 @@ class NewCommand extends Command {
               console.log(`Copying ${m}...`);
               fs.copy(
                 path.join(rootPath, '..', '..', m),
-                path.join(process.cwd(), dirname, 'node_modules', 'mina', m),
+                path.join(process.cwd(), dirname, 'node_modules', 'carthage', m),
                 callback
               );
 
@@ -149,13 +149,13 @@ class NewCommand extends Command {
               console.log('');
               console.log(colors.bold.green('All done!'));
               console.log('');
-              console.log('Your new Mina project, ' + colors.bold(promptResult.name) + ', is ready to go! :)');
+              console.log('Your new Carthage project, ' + colors.bold(promptResult.name) + ', is ready to go! :)');
               console.log('');
-              console.log('Have fun ' + promptResult.author + ', and check out https://github.com/keithwhor/mina for the most up-to-date Mina information')
+              console.log('Have fun ' + promptResult.author + ', and check out https://github.com/keithwhor/carthage for the most up-to-date Carthage information')
               console.log('');
               console.log(colors.bold('Pro tip: ') + 'You can try running your server right away with:');
               console.log('');
-              console.log('  cd ' + dirname + ' && mina s');
+              console.log('  cd ' + dirname + ' && carthage s');
               console.log('');
             }
 

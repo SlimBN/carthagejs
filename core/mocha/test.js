@@ -31,7 +31,7 @@ class Test {
   * Creates a new MockRequest object (emulates an HTTP request)
   * @param {string} path The path you wish to hit
   * @param {Object} query The query parameters you wish to pass
-  * @return {Mina.EndpointRequest}
+  * @return {Carthage.EndpointRequest}
   */
   endpoint(path, query) {
 

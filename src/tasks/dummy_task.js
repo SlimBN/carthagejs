@@ -1,6 +1,6 @@
 'use strict';
 
-const Mina = require('mina');
+const Carthage = require('carthage');
 
 class DummyTask {
 

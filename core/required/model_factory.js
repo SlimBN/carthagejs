@@ -12,7 +12,7 @@ class ModelFactory {
 
   /**
   * Create the ModelFactory with a provided Model to use as a reference.
-  * @param {Mina.Model} modelConstructor Must pass the constructor for the type of ModelFactory you wish to create.
+  * @param {Carthage.Model} modelConstructor Must pass the constructor for the type of ModelFactory you wish to create.
   */
   constructor(modelConstructor) {
 

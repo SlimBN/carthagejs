@@ -1,12 +1,12 @@
 'use strict';
 
-module.exports = Mina => {
+module.exports = Carthage => {
 
   const async = require('async');
 
   let expect = require('chai').expect;
 
-  describe('Mina.API', function() {
+  describe('Carthage.API', function() {
 
     let schemaPost = {
       table: 'posts',
@@ -19,14 +19,14 @@ module.exports = Mina => {
       ]
     };
 
-    class Post extends Mina.Model {}
+    class Post extends Carthage.Model {}
     Post.setSchema(schemaPost);
 
     it('should output one post properly', () => {
 
       let post = new Post({title: 'Howdy', body: 'hello world'});
 
-      let output = Mina.API.format(post);
+      let output = Carthage.API.format(post);
       expect(output).to.have.ownProperty('meta');
       expect(output).to.have.ownProperty('data');
       expect(output.data.length).to.equal(1);
@@ -39,7 +39,7 @@ module.exports = Mina => {
 
     it('should output posts properly', () => {
 
-      let posts = Mina.ModelArray.from([
+      let posts = Carthage.ModelArray.from([
         new Post({title: 'What', body: 'Test post A'}),
         new Post({title: 'Who', body: 'Test post B'}),
         new Post({title: 'When', body: 'Test post C'}),
@@ -48,7 +48,7 @@ module.exports = Mina => {
 
       posts.setMeta({offset: 1, total: 10});
 
-      let output = Mina.API.format(posts);
+      let output = Carthage.API.format(posts);
 
       expect(output).to.have.ownProperty('meta');
       expect(output).to.have.ownProperty('data');
@@ -63,7 +63,7 @@ module.exports = Mina => {
 
     it('should format ItemArrays properly', () => {
 
-      let groups = Mina.ItemArray.from([
+      let groups = Carthage.ItemArray.from([
         {count: 5, color: 'red'},
         {count: 6, color: 'green'},
         {count: 7, color: 'blue'}
@@ -71,7 +71,7 @@ module.exports = Mina => {
 
       groups.setMeta({offset: 1, total: 10});
 
-      let output = Mina.API.format(groups);
+      let output = Carthage.API.format(groups);
 
       expect(output).to.have.ownProperty('meta');
       expect(output).to.have.ownProperty('data');
@@ -86,7 +86,7 @@ module.exports = Mina => {
 
     it('should format ItemArrays properly with include', () => {
 
-      let groups = Mina.ItemArray.from([
+      let groups = Carthage.ItemArray.from([
         {count: 5, color: 'red'},
         {count: 6, color: 'green'},
         {count: 7, color: 'blue'}
@@ -94,7 +94,7 @@ module.exports = Mina => {
 
       groups.setMeta({offset: 1, total: 10});
 
-      let output = Mina.API.format(groups, ['color']);
+      let output = Carthage.API.format(groups, ['color']);
 
       expect(output).to.have.ownProperty('meta');
       expect(output).to.have.ownProperty('data');
