@@ -1,0 +1,20 @@
+'use strict';
+
+const Mina = require('mina');
+
+class {{= data.name }} extends Mina.mocha.Test {
+
+  test(expect) {
+
+    it('Should do something', done => {
+
+      expect(null).to.not.exist;
+      done();
+
+    });
+
+  }
+
+}
+
+module.exports = {{= data.name }};

@@ -1,0 +1,17 @@
+
+'use strict';
+
+const Mina = require('mina');
+
+class {{= data.name }}Renderware {
+
+  exec(controller, data, callback) {
+
+    callback(null, data);
+    return false;
+
+  }
+
+}
+
+module.exports = {{= data.name }}Renderware;

@@ -1,0 +1,48 @@
+{
+  "name": "mina",
+  "version": "1.0.0",
+  "description": "An API Server and Framework with scaffold functions for node.js",
+  "keywords": [
+    "framework",
+    "api",
+    "application",
+    "branding",
+    "server",
+    "modular",
+    "mina"
+  ],
+  "author": "Slim Ben Nasrallah",
+  "main": "core/module.js",
+  "dependencies": {
+    "api-res": "~0.0.4",
+    "async": "~1.5.2",
+    "cmnd": "~0.1.0",
+    "colors": "~1.1.0",
+    "cross-spawn-async": "~2.1.6",
+    "deep-equal": "~1.0.1",
+    "dot": "~1.0.3",
+    "dotenv": "^2.0.0",
+    "fs-extra": "~0.26.4",
+    "fxn": "~0.0.2",
+    "i": "~0.3.4",
+    "inquirer": "~0.11.3",
+    "mime-types": "~2.1.9",
+    "pg": "~4.5.5"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "mocha": "~2.4.5"
+  },
+  "scripts": {
+    "test": "mocha ./test/runner.js",
+    "docs": "documentation build core/module.js -o docs -f html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.devagnos.com/slim/mina"
+  },
+  "license": "MIT",
+  "bin": {
+    "mina": "cli/bin.js"
+  }
+}

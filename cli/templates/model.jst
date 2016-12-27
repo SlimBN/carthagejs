@@ -1,0 +1,10 @@
+'use strict';
+
+const Mina = require('mina');
+
+class {{= data.name }} extends Mina.Model {}
+
+{{? !data.nodb }}{{= data.name }}.setDatabase(Mina.require('db/main.js'));
+{{?}}{{= data.name }}.setSchema(Mina.my.Schema.models.{{= data.name }});
+
+module.exports = {{= data.name }};
