@@ -151,7 +151,7 @@ class NewCommand extends Command {
               console.log('');
               console.log('Your new Carthage project, ' + colors.bold(promptResult.name) + ', is ready to go! :)');
               console.log('');
-              console.log('Have fun ' + promptResult.author + ', and check out https://github.com/keithwhor/carthage for the most up-to-date Carthage information')
+              console.log('Have fun ' + promptResult.author + ', and check out https://github.com/SlimBN/carthagejs for the most up-to-date Carthage information')
               console.log('');
               console.log(colors.bold('Pro tip: ') + 'You can try running your server right away with:');
               console.log('');
