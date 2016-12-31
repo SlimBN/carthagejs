@@ -9,36 +9,10 @@ web, mobile or IoT apps.
 
 ## Why Carthage?
 
-[Hello, Carthage — Building Node.js Servers for Everybody](https://medium.com/@keithwhor/hello-carthage-why-we-re-building-node-js-servers-for-everybody-dce14b27a233)
-is our first blog post that helps you get acquainted with the reasons behind
-the creation of the framework. :)
-
-[Post Parse Prototyping](https://thoughts.ishuman.co/post-parse-prototyping-72b8570af416) is also a fantastic
-read explaining the benefits of Carthage for quick and easy mobile / IoT backend development.
-
-## Overview
-
 Carthage is built upon an ideology of a robust, scalable architecture for
 data storage and retrieval APIs.
-It is an opinionated, explicit, idiomatic and highly-extensible full-service
-framework that takes care of all of the hard decisions for you and your team.
-This allows you to focus on creating an effective product in a
-short timespan while minimizing technical debt.
 
-Carthage servers are not meant to be monoliths. They're *stateless* and *distributed*,
-meant to service your needs of interfacing with your data layer effortlessly.
-While you can output any data format with Carthage, it's recommended you offload
-things like static page rendering to other optimized services like CDNs.
-
-## Stateless Dogma
-
-It's important to note that Carthage is meant for **stateless** API services. This
-means you should not rely on memory within a specific process to serve multiple
-requests, and Carthage will use process clustering (even in development) to actively
-discourage this practice. If you need to work with unstructured data for rapid
-prototyping, *connect Carthage to a PostgreSQL database* and use the "JSON" field
-type. You'll find yourself encountering a lot of trouble if you start trying to
-use in-process memory across different requests.
+Carthage servers are not meant to be monoliths. They're *stateless* and *distributed*
 
 Remember: **one input, one output**. Side effects dealing with model state
 should be managed via your Database. Carthage should not be used for streaming
@@ -56,10 +30,10 @@ a stateful (prolonged) connection with any client.
 Getting started with Carthage is easy.
 
 1. Download and install the newest Node 6.x version from [nodejs.org](https://nodejs.org)
-2. Open tercarthagel, and type `npm install carthage -g`.
+2. In Terminal: type `npm install carthage -g`.
 (If you get an error, run `sudo npm install carthage -g` or fix permissions permanently by
   [following these directions](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
-3. Using your tercarthagel, visit your projects folder. Perhaps with `cd ~`.
+3. Again in Terminal, visit your projects folder. Perhaps with `cd ~`.
 4. Run `carthage new`.
 5. Follow the on screen instructions, enter your new project directory and type `carthage s`.
 
@@ -71,8 +45,7 @@ Once Carthage is up and running, it's likely that you'll want to connect your pr
 to a database. Carthage comes packaged with Migrations, a Query Composer and full
 PostgreSQL integration.
 
-First you'll need to install PostgreSQL. OS X users, I recommend using
-[Postgres.app](http://postgresapp.com/) for your development environment.
+First you'll need to install PostgreSQL.
 
 Once you've installed Postgres, make sure to run:
 
@@ -83,7 +56,7 @@ $ createuser postgres -s
 To create a default postgres superuser with no password. (Default for Carthage's
 configuration.)
 
-To begin using your database, start with:
+First step then:
 
 ```
 $ carthage db:create
@@ -165,17 +138,7 @@ class BlogPostsController extends Carthage.Controller {
 ```
 
 
-## Beginner's Guide
-
-You'll be able to learn more about Carthage at [carthagejs.com](http://carthagejs.com).
-
-## Documentation
-
-Check out the website at [carthagejs.com](http://carthagejs.com).
-
-
 Follow me on Twitter, [@hatchvenom](http://twitter.com/hatchvenom)
 
-Fork me on GitHub, [keithwhor](http://github.com/SlimBN)
+Fork me on GitHub, [SlimBN](http://github.com/SlimBN)
 
-Thanks for checking out Carthage!
