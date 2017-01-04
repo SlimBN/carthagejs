@@ -1,6 +1,6 @@
 {
   "name": "carthage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An API Server and Framework with scaffold functions for node.js",
   "keywords": [
     "framework",
