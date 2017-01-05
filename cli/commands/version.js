@@ -23,6 +23,7 @@ class VersionCommand extends Command {
 
     let version = require('../../package.json').version;
     console.log(colors.green.bold('Carthage Version: ') + version);
+    console.log(colors.green.bold('Built internally @ devagnos.com'));
 
     callback(null);
 
