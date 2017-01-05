@@ -21,7 +21,7 @@ class ServerCommand extends Command {
   run(params, callback) {
 
     let spawn = require('cross-spawn-async');
-    let child = spawn('pm2 start',  ['cluster.js'], {stdio: 'inherit'});
+    let child = spawn('pm2 start',  ['cluster.js -i 0'], {stdio: 'inherit'});
 
     process.on('exit', function() {
       child && child.kill();

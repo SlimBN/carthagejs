@@ -1,5 +1,5 @@
 git add .
-git commit -m "advancing on the api"
+git commit -m "advancing on controllers"
 git push
 npm publish
-sudo npm update -g carthage
+sudo npm install -g carthage
