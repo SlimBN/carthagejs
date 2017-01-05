@@ -24,7 +24,7 @@ class DBCreateCommand extends Command {
 
     process.env.NODE_ENV = 'production';
 
-    const bootstrapper = require('../../../core/my/bootstrapper.js');
+    const bootstrapper = require('../../../../core/my/bootstrapper.js');
     bootstrapper.create(callback);
 
   }
